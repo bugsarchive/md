@@ -1,1 +1,1 @@
-Art.  3 cat. 2
+Art. 3 cat. 2
