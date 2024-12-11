@@ -96,7 +96,7 @@ given algorithm.
 
 ## Constant Time
 
-```
+```python
 def f(n):
     return n + 1
 ```
@@ -114,7 +114,7 @@ constants, we can replace them with a single constant `K`. Now, the algorithm is
 dropped. In this case, the algorithm becomes `O(1)`, or constant time as per
 above.
 
-```
+```python
 def f(n):
     for i in range(5):
         n += 1
@@ -130,7 +130,7 @@ with `k` and `a` such that we have `O(K)`. Now, dropping the constant leaves
 
 ## Linear Time
 
-```
+```python
 def f(l: list):
     for i in range(l.length):
         n[i] += 1
@@ -152,7 +152,7 @@ than `1`, so the constant term is insignificant.
 
 ## Polynomial Time
 
-```
+```python
 def f(l: list):
     for i in range(l.length):
         for j in range(l.length):
@@ -177,7 +177,7 @@ Recursive functions are described using the recursive relation. It takes the
 form of a base case (or however base cases are necessary) as well as a recursive
 function. The following is the mathematical form:
 
-```
+```math
 T(1) = f(n)
 T(n) = bT(d(n)) + h(n)
 ```
@@ -187,7 +187,7 @@ factor, i.e. how many times the recursion is called during each run. `d(n)`
 defines how the input is decreased every run, and `h(n)` is the amount of time
 it takes to complete each run. Now, consider the following algorithm:
 
-```
+```python
 def f(n):
     if n == 0 or n == 1:
         return 1
@@ -212,7 +212,7 @@ which is a constant time operation in time `m`.
 
 Putting this all together, the recursive relation is as follows:
 
-```
+```math
 T(0) = k
 T(1) = k
 T(n) = T(n - 1) + m
@@ -221,7 +221,7 @@ T(n) = T(n - 1) + m
 From here, the runtime complexity can be found by expanding the recursive
 relation as follows:
 
-```
+```math
 T(n) = T(n - 1) + m
      = (T(n - 2) + m) + m
      = ((T(n - 3) + m) + m) + m
@@ -232,14 +232,14 @@ Each expansion represents increasing the recursive depth by `1`. Let's call the
 current recursive depth `r`. We can trivially substitute this in to get a
 general form of the recursive relation like so:
 
-```
+```math
 T(n) = T(n - r) + rm
 ```
 
 To solve for the time complexity, we need to get to the base case. This happens
 when `n - r = 1`, so `r = 1 + n`. Substituting:
 
-```
+```math
 T(n) = T(1) + m(1 + n)
      = k + m + mn
 ```
@@ -253,7 +253,7 @@ recursive factorial algorithm is linear time.
 
 The analysis from before will apply exactly the same to the following algorithm:
 
-```
+```pseudocode
 def f(l: list, s):
     if l[0] == s: return 0
     middle = (int)(l.length / 2)
@@ -272,7 +272,7 @@ case will be considered a bug.
 
 We can now begin to write our recursive relation:
 
-```
+```math
 T(1) = k
 T(n) = T(n / 2) + q
 ```
@@ -287,7 +287,7 @@ either the upper or lower half of the list.
 
 Now, we can begin to unroll the relation with unroll level `r`:
 
-```
+```math
 T(n) = T(n / 2) + q
      = T(n / 4) + q + q
      = T(n / 8) + q + q + q
@@ -296,7 +296,7 @@ T(n) = T(n / 2) + q
 
 The base case is reaches when `n / 2^r = 1`, so `r = log2(n)`. Substituting:
 
-```
+```math
 T(n) = T(1) + qlog2(n)
      = k + qlog2(n)
 ```
