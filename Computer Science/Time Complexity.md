@@ -17,7 +17,7 @@ given algorithm will run no slower and no faster than the given bound.
 Big-Omega is a lower bound on the runtime of an algorithm. It states that the
 algorithm will run no faster than the given bound.
 
-Big-O is the last of the three and is a lower bound on the runtime of an
+Big-O is the last of the three and is an upper bound on the runtime of an
 algorithm. It states that the algorithm will run no slower than the bound.
 
 Typically, only Big-O is used to express the runtime of an algorithm. Such usage
@@ -52,7 +52,7 @@ such:
 
 `f(n) is O(g(n))` implies that for all `n < N`, there is some `k` such that
 `f(n) < kg(n)`. Choosing an appropriate `N` and `k` can allow us to directly
-prove is some function is Big-O of some other function.
+prove if some function is Big-O of some other function.
 
 `f(n) is O(g(n))` really means that at some sufficiently large input, `f(n)` is
 always less than `g(n)` for the same input.
@@ -62,7 +62,9 @@ always less than `g(n)` for the same input.
 By using the above definition of Big-O, some common functions can be ranked such
 that each function is Big-O of the next function:
 
+```math
 1 < log(n) < n < nlog(n) < n^2 < n^99 < 2^n < 99^n < n!
+```
 
 In this ranking there are a couple of different types of functions, all of which
 are important to know. `1` is the simplest and the fastest function. It is known
@@ -96,7 +98,7 @@ given algorithm.
 
 ## Constant Time
 
-```python
+```code
 def f(n):
     return n + 1
 ```
@@ -114,9 +116,9 @@ constants, we can replace them with a single constant `K`. Now, the algorithm is
 dropped. In this case, the algorithm becomes `O(1)`, or constant time as per
 above.
 
-```python
+```code
 def f(n):
-    for i in range(5):
+    for i in 0..5:
         n += 1
 ```
 
@@ -130,9 +132,9 @@ with `k` and `a` such that we have `O(K)`. Now, dropping the constant leaves
 
 ## Linear Time
 
-```python
+```code
 def f(l: list):
-    for i in range(l.length):
+    for i in 0..l.length:
         n[i] += 1
 ```
 
@@ -145,22 +147,22 @@ iterations, so it takes `jn` time to iterate. All together, the function is
 `O(jn + k + a)`. Once again, constants can be combined and then dropped, so we
 end up with `O(n + 1)` time. In this case, the time complexity is comprised of
 two functions. Since `n` grows much faster than `1` (which doesn't grow at all),
-it is fair to drop the slower terms so that the time complexity becomes `O(n)`,
+it is fair to drop the slower term so that the time complexity becomes `O(n)`,
 or linear time. It is valid to ignore slower terms since, as per above, Big-O is
 only concerned with asymptotic behavior. For large inputs, `n` is much larger
 than `1`, so the constant term is insignificant.
 
 ## Polynomial Time
 
-```python
+```code
 def f(l: list):
-    for i in range(l.length):
-        for j in range(l.length):
+    for i in 0..l.length:
+        for j in 0..l.length:
             l[i] += 1
 ```
 
 This algorithm is a convoluted and inefficient way to add `n`, the length of
-`l`, to every element of `l`. Call and teardown require time `k`. Now, the first
+`l`, to every element in `l`. Call and teardown require time `k`. Now, the first
 loop will iterate `n` times. Inside of it is another loop that iterates another
 `n` times. Addition requires time `a`, so the inside loop finishes in `an` time.
 The outer loop will then require `ann` time, or `an^2` time. Now, combining the
@@ -187,7 +189,7 @@ factor, i.e. how many times the recursion is called during each run. `d(n)`
 defines how the input is decreased every run, and `h(n)` is the amount of time
 it takes to complete each run. Now, consider the following algorithm:
 
-```python
+```code
 def f(n):
     if n == 0 or n == 1:
         return 1
@@ -205,7 +207,7 @@ Since `f(n)` is called once inside itself (called as `f(n - 1)` ), the branching
 factor `b` is `1`.
 
 Each subsequent recursive call decreases the input by `1`, as evidenced by
-`f(n-1)`, so the decreasing function `d(n)` is `n - 1`.
+`f(n - 1)`, so the decreasing function `d(n)` is `n - 1`.
 
 Finally, the algorithm uses only a multiplication outside of the recursive call,
 which is a constant time operation in time `m`.
@@ -237,11 +239,11 @@ T(n) = T(n - r) + rm
 ```
 
 To solve for the time complexity, we need to get to the base case. This happens
-when `n - r = 1`, so `r = 1 + n`. Substituting:
+when `n - r = 1`, so `r = n - 1`. Substituting:
 
 ```math
-T(n) = T(1) + m(1 + n)
-     = k + m + mn
+T(n) = T(1) + m(n - 1)
+     = k + mn - m
 ```
 
 Combining and dropping all constants leaves us with `O(n + 1)`, which is
@@ -253,10 +255,10 @@ recursive factorial algorithm is linear time.
 
 The analysis from before will apply exactly the same to the following algorithm:
 
-```pseudocode
+```code
 def f(l: list, s):
     if l[0] == s: return 0
-    middle = (int)(l.length / 2)
+    middle = floor(l.length / 2)
     if l[middle] == s:
         return middle
     else if l[middle] < s:
@@ -294,7 +296,7 @@ T(n) = T(n / 2) + q
      = T(n / 2^r) + qr
 ```
 
-The base case is reaches when `n / 2^r = 1`, so `r = log2(n)`. Substituting:
+The base case is reached when `n / 2^r = 1`, so `r = log2(n)`. Substituting:
 
 ```math
 T(n) = T(1) + qlog2(n)
@@ -305,10 +307,26 @@ Using properties of the logarithm we know that `log2(n) = log(n)/log(2)`. Since
 `1/log(2)` is a constant, it can be pulled out and combined with the other
 constants so that the algorithm is `O(K + log(n))`. In this case, `log(n)` still
 grows much faster than the constant `K`, so the algorithm is `O(log(n))`, or
-logarithmic time.
+logarithmic time. Below is an approximate graph of linear time and logarithmic
+time.
 
-This proves that the binary search algorithm is much faster than linear search
-for large enough inputs, provided that the conditions are met.
+```graph
+ ^ time
+ |     /
+ |    /
+ |   /   ---/
+ |  / --/
+ | /-/
+ |/
+-+-----------> n
+ |
+```
+
+Since the linear curve is always above the logarithmic curve, a linear time
+algorithm will take more time to run than a logarithmic time algorithm for a
+similar sized input. This proves that the binary search algorithm is much faster
+than linear search for large enough inputs, provided that the conditions are
+met.
 
 This same analysis can be applied for any recursive algorithm, although the
 algebra required to solve for the final runtime complexity may differ.
@@ -318,7 +336,7 @@ algebra required to solve for the final runtime complexity may differ.
 
 Time complexity is a powerful tool to rate the how efficient an algorithm may
 be. However, it is important to note that runtime complexity is not the entire
-picture when it comes to real time. This abstraction totally ignored things like
+picture when it comes to real time. This abstraction totally ignores things like
 the time and space it takes to call and destroy functions, which is especially
 important when looking at recursive algorithms. Typically, the algorithm with a
 faster runtime complexity is the one which should be used, although it is
