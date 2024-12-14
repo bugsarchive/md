@@ -66,7 +66,7 @@ By using the above definition of Big-O, some common functions can be ranked such
 that each function is Big-O of the next function:
 
 $$
-1 < \log(n) < n < n\log(n) < n^2 < n^99 < 2^n < 99^n < n!
+1 < \log(n) < n < n\log(n) < n^2 < n^(99) < 2^n < 99^n < n!
 $$
 
 In this ranking there are a couple of different types of functions, all of which
@@ -80,7 +80,7 @@ complexity of e.g. binary search.
 $n\log(n)$ is known as log-linear and is the next step up from logarithmic. Merge
 sort is a common example of a log-linear algorithm.
 
-$n^2$, $n^99$, and other powers of n are known as polynomial time. It is very
+$n^2$, $n^(99)$, and other powers of n are known as polynomial time. It is very
 easy to develop a polynomial-time algorithm as it commonly arises from nested
 loops.
 
