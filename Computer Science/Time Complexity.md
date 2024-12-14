@@ -1,3 +1,6 @@
+% Time Complexity
+% Raniconduh
+
 # Time Complexity
 
 Time complexity is a useful tool to measure how efficient a computer algorithm
