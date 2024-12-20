@@ -85,8 +85,8 @@ function to compute its result. On a computer, for instance, large recursive
 functions can lead to stack overflows, which are undesirable. In the case of the
 factorial function, it is clear that `f(n)` takes `n - 1` recursive cycles to
 compute the end result. For more complex recursive algorithms, calculating this
-time complexity becomes increasingly more difficult, and it covered in the "Time
-Complexity" article.
+time complexity becomes increasingly more difficult, and it is covered in
+[another article](/Computer Science/Time Complexity.html).
 
 
 # Backtracking Recursive Algorithms
