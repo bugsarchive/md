@@ -53,12 +53,12 @@ descriptions of Big-Theta and Big-Omega.
 The following statement: `f(n)` is `O(g(n))` can be expressed mathematically as
 such:
 
-`f(n) is O(g(n))` implies that for all `n < N`, there is some `k` such that
-`f(n) < kg(n)`. Choosing an appropriate `N` and `k` can allow us to directly
+`f(n) is O(g(n))` if and only if for all `n > N`, there is some `k` such that
+`f(n) <= kg(n)`. Choosing appropriate `N` and `k` can allow us to directly
 prove if some function is Big-O of some other function.
 
 `f(n) is O(g(n))` really means that at some sufficiently large input, `f(n)` is
-always less than `g(n)` for the same input.
+always less than or equal to `g(n)` for the same input.
 
 ## Function Ranking
 
