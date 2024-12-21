@@ -53,8 +53,8 @@ problems tend to be difficult to prove.
 
 # Turing's proof
 
-Alan Turing's proof of the halting problem is an example of **proof by
-contradiction** (Reductio ad absurdum). He demonstrated that it is impossible
+Alan Turing's proof of the halting problem is an example of a **proof by
+contradiction** (reductio ad absurdum). He demonstrated that it is impossible
 to design an algorithm that can determine whether an arbitrary program halts or
 runs indefinitely for all possible inputs.
 
