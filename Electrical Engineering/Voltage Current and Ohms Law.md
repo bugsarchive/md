@@ -1,7 +1,7 @@
 % Current, Voltage, and Ohm's Law
 % Rani
 
-# Current, Voltage, and Ohm's Law
+# Introduction
 
 Ohm's law is one of the most ubiquitous equations in circuit analysis and
 electrical engineering. It relates the current through a resistor to the voltage
@@ -29,14 +29,14 @@ sources will assume the necessary voltage in order to drive the correct amount
 of current. The following are circuit schematics for current sources:
 
 ```circuit
-   O
+   o
    |
    |
  ( ^ ) N Amps          N Amps
- ( | )           O----( --> )----O
+ ( | )           o----( --> )----o
    |
    |
-   O
+   o
 ```
 
 An arrow indicates the direction of the current through the source, and the
@@ -73,14 +73,14 @@ out as much current as necessary in order to keep the voltage correct. The
 following are circuit schematics for voltage sources:
 
 ```circuit
-  O           O              O 
+  o           o              o
   |           |              |
   |           |           _______ +
 ( + ) V    _______ +        ___                  V
-( - )        ___     V    _______ V       O---( - + )---O
+( - )        ___     V    _______ V       o---( - + )---o
   |           |    -        ___
   |           |              |    -
-  O           O              O
+  o           o              o
 ```
 
 Voltage sources have (+) and (-) terminals, and a label beside them indicates
@@ -115,17 +115,20 @@ versatile and ubiquitous circuit elements. The circuit schematic for a resistor
 is as so:
 
 ```circuit
-  O
+  o
   |
-  |
- <               R
-   >      O---/\/\/\/---O
- <    R
-   >
-  |
-  |
-  O
+  |                R
+ +-+        o---/\/\/\/---o
+ | |
+ | |  R
+ +-+               R
+  |             _______
+  |        o---|_______|---o
+  o
 ```
+
+The blocky resistor model is typically referred to as IEC or "European" style,
+while the zig-zaggy model is referred to as US or "American" style.
 
 ## Ohm's Law
 
@@ -173,10 +176,10 @@ circuits:
 ```circuit
    +-----------+
    |           |
-   |          <
- ( + ) 5V       >
- ( - )        <    5 Ohm
-   |            >
+   |          +-+
+ ( + ) 5V     | |
+ ( - )        | |  5 Ohm
+   |          +-+
    |           |
    +-----------+
 ```
@@ -194,10 +197,10 @@ resistor must then be 1 Ampere, or 1 Amp.
 ```circuit
    +------------+
    |            |
-   |           <
- ( ^ ) 15A       > 3 Ohm
- ( | )         <
-   |             >
+   |           +-+
+ ( ^ ) 15A     | | 3 Ohm
+ ( | )         | |
+   |           +-+
    |            |
    +------------+
 ```
@@ -214,10 +217,10 @@ the voltage across the resistor must be 45 Volts.
 ```circuit
    +-------------+
    |             |
-   |            <
- ( + ) 25V        >  | 5A
- ( - )          <    V
-   |              >
+   |            +-+
+ ( + ) 25V      | |  | 5A
+ ( - )          | |  V
+   |            +-+
    |             |
    +-------------+
 ```
